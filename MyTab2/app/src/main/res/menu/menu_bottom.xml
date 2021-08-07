@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/tab1"
+        android:enabled="true"
+        android:title="이메일"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/tab2"
+        android:enabled="true"
+        android:title="정보"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/tab3"
+        android:enabled="true"
+        android:title="위치"
+        app:showAsAction="ifRoom" />
+
+
+</menu>
