@@ -1,4 +1,4 @@
-package org.techtown.sliding;
+package org.study.sliding;
 
 import android.os.Bundle;
 import android.view.View;
@@ -52,10 +52,10 @@ public class MainActivity extends AppCompatActivity {
             if (isPageOpen) {
                 page.setVisibility(View.INVISIBLE);
 
-                button.setText("Open");
+                button.setText("열기");
                 isPageOpen = false;
             } else {
-                button.setText("Close");
+                button.setText("닫기");
                 isPageOpen = true;
             }
         }

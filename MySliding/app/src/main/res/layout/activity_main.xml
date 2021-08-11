@@ -9,12 +9,6 @@
         android:background="#ff5555ff"
         android:orientation="vertical">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Base Area"
-            android:textColor="#ffffffff" />
-
     </LinearLayout>
 
     <LinearLayout
@@ -25,20 +19,6 @@
         android:background="#ffffff66"
         android:orientation="vertical"
         android:visibility="gone">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Area #1"
-            android:textColor="#ff000000" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Area #2"
-            android:textColor="#ff000000" />
 
     </LinearLayout>
 
@@ -53,7 +33,7 @@
             android:id="@+id/button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Open" />
+            android:text="열기" />
 
     </LinearLayout>
 
