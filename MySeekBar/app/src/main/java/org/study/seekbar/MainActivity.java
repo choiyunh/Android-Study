@@ -1,7 +1,11 @@
-package org.techtown.seekbar;
+package org.study.seekbar;
 
+import android.content.Context;
 import android.os.Bundle;
+import android.view.View;
 import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
@@ -20,9 +24,8 @@ public class MainActivity extends AppCompatActivity {
         SeekBar seekBar = findViewById(R.id.seekBar);
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
-            public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
-                setBrightness(i);
-                textView.setText("변경된 값 : " + i);
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean b) {
+                textView.setText("지정된 값 : " + progress);
             }
 
             @Override
@@ -34,18 +37,16 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        Button button = findViewById(R.id.button2);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                InputMethodManager manager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                manager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+            }
+        });
+
     }
 
-    private void setBrightness(int value) {
-        if (value < 10) {
-            value = 10;
-        } else if (value > 100) {
-            value = 100;
-        }
-
-        WindowManager.LayoutParams params = getWindow().getAttributes();
-        params.screenBrightness = (float) value / 100;
-        getWindow().setAttributes(params);
-    }
 
 }
