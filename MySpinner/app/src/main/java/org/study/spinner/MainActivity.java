@@ -1,4 +1,4 @@
-package org.techtown.spinner;
+package org.study.spinner;
 
 import android.os.Bundle;
 import android.view.View;

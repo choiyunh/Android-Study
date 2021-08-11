@@ -1,4 +1,4 @@
-package org.techtown.recyclerview;
+package org.study.list;
 
 import android.view.View;
 
