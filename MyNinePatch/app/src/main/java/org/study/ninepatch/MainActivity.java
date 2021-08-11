@@ -1,10 +1,8 @@
-package com.example.ninepatch;
+package org.study.ninepatch;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
-
-import com.example.ninepatch.R;
 
 public class MainActivity extends AppCompatActivity {
 
