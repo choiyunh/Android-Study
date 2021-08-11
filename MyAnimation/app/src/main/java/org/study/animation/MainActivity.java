@@ -1,4 +1,4 @@
-package org.techtown.anim;
+package org.study.animation;
 
 import android.os.Bundle;
 import android.view.View;
