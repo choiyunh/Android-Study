@@ -1,9 +1,10 @@
-package org.techtown.web;
+package org.study.web;
 
 import android.os.Bundle;
 import android.view.View;
 import android.webkit.JsResult;
 import android.webkit.WebChromeClient;
+import android.webkit.WebResourceRequest;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -24,14 +25,13 @@ public class MainActivity extends AppCompatActivity {
         editText = findViewById(R.id.editText);
         webView = findViewById(R.id.webView);
 
-        WebSettings webSettings = webView.getSettings();
-        webSettings.setJavaScriptEnabled(true);
-
-        //webView.setWebChromeClient(new BrowserClient());
-        webView.setWebViewClient(new ViewClient());
-
-        //webView.addJavascriptInterface(new JavaScriptMethods(), "sample");
-        //webView.loadUrl("file:///android_asset/www/sample.html");
+        webView.setWebViewClient(new WebViewClient() {
+            @Override
+            public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
+                view.loadUrl(request.getUrl().toString());
+                return true;
+            }
+        });
 
         Button button = findViewById(R.id.button);
         button.setOnClickListener(new View.OnClickListener() {
@@ -39,23 +39,6 @@ public class MainActivity extends AppCompatActivity {
                 webView.loadUrl(editText.getText().toString());
             }
         });
-    }
-
-    final class BrowserClient extends WebChromeClient {
-        public boolean onJsAlert(WebView view, String url, String message, JsResult result) {
-            result.confirm();
-
-            return true;
-        }
-    }
-
-    private class ViewClient extends WebViewClient {
-        @Override
-        public boolean shouldOverrideUrlLoading(final WebView view, final String url) {
-            view.loadUrl(url);
-
-            return true;
-        }
     }
 
 }
