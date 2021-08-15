@@ -15,6 +15,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.gson.Gson;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -59,6 +60,7 @@ public class MainActivity extends AppCompatActivity {
                     public void onResponse(String response) {
                         println("응답 -> " + response);
 
+                        processResponse(response);
                     }
                 },
                 new Response.ErrorListener() {
@@ -83,6 +85,13 @@ public class MainActivity extends AppCompatActivity {
 
     public void println(String data) {
         textView.append(data + "\n");
+    }
+
+    public void processResponse(String response) {
+        Gson gson = new Gson();
+        MovieList movieList = gson.fromJson(response, MovieList.class);
+
+        println("영화정보의 수 : " + movieList.boxOfficeResult.dailyBoxOfficeList.size());
     }
 
 }
