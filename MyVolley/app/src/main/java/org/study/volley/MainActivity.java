@@ -1,12 +1,15 @@
 package org.study.volley;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -26,11 +29,13 @@ public class MainActivity extends AppCompatActivity {
 
     static RequestQueue requestQueue;
 
+    RecyclerView recyclerView;
+    MovieAdapter adapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
 
         editText = findViewById(R.id.editText);
         textView = findViewById(R.id.textView);
@@ -47,7 +52,16 @@ public class MainActivity extends AppCompatActivity {
             requestQueue = Volley.newRequestQueue(getApplicationContext());
         }
 
+        recyclerView = findViewById(R.id.recyclerView);
+
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+        recyclerView.setLayoutManager(layoutManager);
+
+        adapter = new MovieAdapter();
+        recyclerView.setAdapter(adapter);
+
     }
+
 
     public void makeRequest() {
         String url = editText.getText().toString();
@@ -84,7 +98,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void println(String data) {
-        textView.append(data + "\n");
+        Log.d("MainActivity", data);
     }
 
     public void processResponse(String response) {
@@ -92,6 +106,14 @@ public class MainActivity extends AppCompatActivity {
         MovieList movieList = gson.fromJson(response, MovieList.class);
 
         println("영화정보의 수 : " + movieList.boxOfficeResult.dailyBoxOfficeList.size());
+
+        for (int i = 0; i < movieList.boxOfficeResult.dailyBoxOfficeList.size(); i++) {
+            Movie movie = movieList.boxOfficeResult.dailyBoxOfficeList.get(i);
+
+            adapter.addItem(movie);
+        }
+
+        adapter.notifyDataSetChanged();
     }
 
 }
