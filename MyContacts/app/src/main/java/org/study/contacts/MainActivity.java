@@ -1,4 +1,4 @@
-package org.techtown.contacts;
+package org.study.contacts;
 
 import android.content.Intent;
 import android.database.Cursor;
